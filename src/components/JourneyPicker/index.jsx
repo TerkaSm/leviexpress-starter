@@ -11,14 +11,13 @@ const DatesOptions = ({dates}) => {
   return dates.map((date) => <option value={date.dateBasic} key={date.dateBasic} datcs={date.dateCs}>{date.dateCs}</option>)
 };
 
-export const JourneyPicker = ({ onJourneyChange }) => {
+export const JourneyPicker = ({ journey, onJourneyChange }) => {
   const [fromCity, setFromCity] = useState('')
   const [toCity, setToCity] = useState('')
   const [date, setDate] = useState('')
   const [cities, setCities] = useState([])
   const [dates, setDates] = useState([])
-
-    console.log(dates)
+  console.log(dates)
 
   useEffect(
     () => {
@@ -52,7 +51,12 @@ export const JourneyPicker = ({ onJourneyChange }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(`Uživatel chcete objednat jízdenku z ${fromCity} do ${toCity} na ${date}.`);
+    const fetchData = async () => {
+      const response = await fetch(`https://apps.kodim.cz/daweb/leviexpress/api/journey?fromCity=${fromCity}&toCity=${toCity}&date=${date}`);
+      const data = await response.json();
+      console.log(data.results)
+    }
+    fetchData()
   }
 
   return (
@@ -83,6 +87,7 @@ export const JourneyPicker = ({ onJourneyChange }) => {
           </label>
           <div className="journey-picker__controls">
             <button 
+              disabled={!fromCity || !toCity || !date}
               className="btn" 
               type="submit"
             > 

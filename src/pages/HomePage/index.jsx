@@ -5,14 +5,13 @@ export const HomePage = () => {
   const [journey, setJourney] = useState(null)
 
   const handleJourneyChange = (journey) => {
-    console.log('journey')
+    setJourney(journey)
   }
-  handleJourneyChange()
 
   return (
     <main>
-      <JourneyPicker journeyId={journeyId} journey={journey} onJourneyChange={handleJourneyChange} />
-      <h1>Nalezeno spojení s id{journeyId}</h1>
+      <JourneyPicker onJourneyChange={handleJourneyChange} />
+      {journey === null ? null : <h1>Nalezeno spojení s id{journey.journeyId}</h1>}
     </main>
   );
 };

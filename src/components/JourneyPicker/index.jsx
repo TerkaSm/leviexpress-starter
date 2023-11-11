@@ -11,7 +11,7 @@ const DatesOptions = ({dates}) => {
   return dates.map((date) => <option value={date.dateBasic} key={date.dateBasic} datcs={date.dateCs}>{date.dateCs}</option>)
 };
 
-export const JourneyPicker = ({ journey, onJourneyChange }) => {
+export const JourneyPicker = ({ onJourneyChange }) => {
   const [fromCity, setFromCity] = useState('')
   const [toCity, setToCity] = useState('')
   const [date, setDate] = useState('')
@@ -55,6 +55,7 @@ export const JourneyPicker = ({ journey, onJourneyChange }) => {
       const response = await fetch(`https://apps.kodim.cz/daweb/leviexpress/api/journey?fromCity=${fromCity}&toCity=${toCity}&date=${date}`);
       const data = await response.json();
       console.log(data.results)
+      onJourneyChange(data.results)
     }
     fetchData()
   }

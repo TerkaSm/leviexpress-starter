@@ -14,7 +14,8 @@ export const HomePage = () => {
     <main>
       <JourneyPicker onJourneyChange={handleJourneyChange} />
       {/* {journey === null ? null : <h1>Nalezeno spojení s id{journey.journeyId}</h1>} */}
-      {journey === null ? null : <JourneyDetail  journey={journey} />}
+      {/* {journey === null ? null : <JourneyDetail  journey={journey} />} */}
+      {journey && <JourneyDetail  journey={journey} />}
     </main>
   );
 };

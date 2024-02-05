@@ -6,10 +6,10 @@ export const BusStop = (journey) => {
     <div className="bus-stop">
       <div className="bus-stop__bullet"></div>
       <div className="bus-stop__place">
-        <div className="bus-stop__city">Praha {journey.name}</div>
-        <div className="bus-stop__station">ÚAN Florenc {journey.station} </div>
+        <div className="bus-stop__city">{journey.name}</div>
+        <div className="bus-stop__station">{journey.station}</div>
       </div>
-      <div className="bus-stop__departure">15:55 {journey.time} </div>
+      <div className="bus-stop__departure">{journey.time}</div>
     </div>
   );
 };
